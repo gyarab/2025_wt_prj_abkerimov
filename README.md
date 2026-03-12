@@ -88,36 +88,4 @@ graph TD
 | (>) (||) (>>) Track Name - Artist    [======---] |
 +--------------------------------------------------+
 ```
-erDiagram
-    ARTIST ||--o{ ALBUM : "vydává"
-    ALBUM ||--|{ TRACK : "obsahuje"
-    USER ||--o{ PLAYLIST : "vytváří"
-    PLAYLIST }o--o{ TRACK : "obsahuje"
 
-    ARTIST {
-        int id PK
-        string name
-        string bio
-    }
-    ALBUM {
-        int id PK
-        string title
-        date release_date
-        int artist_id FK
-    }
-    TRACK {
-        int id PK
-        string title
-        int duration
-        int album_id FK
-    }
-    USER {
-        int id PK
-        string username
-        string email
-    }
-    PLAYLIST {
-        int id PK
-        string name
-        int user_id FK
-    }
