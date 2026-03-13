@@ -38,7 +38,7 @@ Základní architektura je postavena na relační databázi, která se skládá 
 
 ### Mobilní verze
 
-![Wireframe1](img/IMG_1979.heic)
+![Wireframe1](**img/IMG_1979.heic**)
 ### Desktopová verze
 
 ![Wireframe2](img/IMG_19792.heic)
