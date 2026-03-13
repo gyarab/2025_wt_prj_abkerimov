@@ -49,25 +49,8 @@ graph TD
 
 ### Mobilní verze
 
-
+![Alt text](IMG_1979.heic)
 ### Desktopová verze
 
-```text
-+--------------------------------------------------+
-| [Logo]       | [Hledat interprety, alba...]      |
-+--------------+-----------------------------------+
-| Domů         |  Populární interpreti             |
-| Hledat       |  [Obr] [Obr] [Obr] [Obr] [Obr]    |
-| Knihovna     |                                   |
-|              |  Tvoje oblíbené playlisty         |
-| PLAYLISTY    |  [Obr] [Obr] [Obr]                |
-| - Chill      |                                   |
-| - Workout    |  Nedávno přehráno                 |
-| - Rock       |  1. Song A - Artist A      [+]    |
-|              |  2. Song B - Artist B      [+]    |
-|              |                                   |
-+--------------+-----------------------------------+
-| (>) (||) (>>) Track Name - Artist    [======---] |
-+--------------------------------------------------+
-```
+![Alt text](IMG_19792.heic)
 
