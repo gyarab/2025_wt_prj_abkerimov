@@ -30,7 +30,7 @@ Základní architektura je postavena na relační databázi, která se skládá 
 
 ## User Flow
 
-![Alt text](IMG_19793.heic)
+![Alt text](img/IMG_19793.heic)
 
 ---
 
@@ -38,12 +38,12 @@ Základní architektura je postavena na relační databázi, která se skládá 
 
 ### Mobilní verze
 
-![Alt text](IMG_1979.heic)
+![Alt text](img/IMG_1979.heic)
 ### Desktopová verze
 
-![Alt text](IMG_19792.heic)
+![Alt text](img/IMG_19792.heic)
 
 
 ### E-R diagram
 
-![Alt text](IMG_19794.heic)
+![Alt text](img/IMG_19794.heic)
