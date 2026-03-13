@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="cs" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MelodyStream</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { padding-bottom: 80px; } /* Místo pro přehrávač dole */
+        .sidebar { min-height: 100vh; background-color: #121212; }
+        .player-bar { 
+            position: fixed; bottom: 0; width: 100%; height: 80px; 
+            background-color: #181818; border-top: 1px solid #282828; z-index: 1000;
+        }
+    </style>
+</head>
+<body class="bg-dark text-light">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 sidebar p-3 d-none d-md-block">
+                <h4 class="text-success mb-4">MelodyStream</h4>
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link text-light" href="{% url 'dashboard' %}">Domů</a></li>
+                    <li class="nav-item"><a class="nav-link text-light" href="{% url 'playlists' %}">Knihovna</a></li>
+                </ul>
+                <hr class="text-secondary">
+                <h6 class="text-secondary">PLAYLISTY</h6>
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link text-light btn-sm" href="{% url 'create_playlist' %}">+ Nový playlist</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-10 p-4">
+    <div class="row mb-4">
+    <div class="col-md-6">
+        <form action="{% url 'search' %}" method="GET" class="d-flex">
+            <input type="text" name="q" class="form-control bg-dark text-light border-secondary me-2" 
+                   placeholder="Hledat skladby nebo interprety..." value="{{ request.GET.q }}">
+            <button type="submit" class="btn btn-outline-success">Hledat</button>
+        </form>
+    </div>
+</div>
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <div class="player-bar d-flex align-items-center px-4">
+        <div class="text-light me-4">
+            <h6 class="m-0" id="current-track-title">Vyberte skladbu</h6>
+            <small class="text-secondary" id="current-artist">--</small>
+        </div>
+        <div class="flex-grow-1 text-center">
+            <button class="btn btn-outline-light btn-sm mx-1">⏮</button>
+            <button class="btn btn-success btn-sm mx-1">▶</button>
+            <button class="btn btn-outline-light btn-sm mx-1">⏭</button>
+            <div class="progress mt-2" style="height: 5px; max-width: 400px; margin: 0 auto;">
+                <div class="progress-bar bg-success" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

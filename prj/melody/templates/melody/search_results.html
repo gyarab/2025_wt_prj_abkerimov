@@ -1,0 +1,41 @@
+{% extends 'melody/base.html' %}
+
+{% block content %}
+<h2>Výsledky vyhledávání pro: "{{ query }}"</h2>
+<hr class="border-secondary">
+
+{% if artists %}
+<h4 class="mt-4">Interpreti</h4>
+<div class="row row-cols-2 row-cols-md-6 g-4 mb-4">
+    {% for artist in artists %}
+    <div class="col text-center">
+        <div class="rounded-circle bg-secondary mb-2 mx-auto" style="width: 80px; height: 80px; overflow: hidden;">
+            {% if artist.image %}<img src="{{ artist.image.url }}" class="w-100 h-100" style="object-fit: cover;">{% endif %}
+        </div>
+        <a href="{% url 'artist_detail' artist.id %}" class="text-light text-decoration-none small fw-bold">{{ artist.name }}</a>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if tracks %}
+<h4 class="mt-4">Skladby</h4>
+<table class="table table-dark table-hover">
+    <tbody>
+        {% for track in tracks %}
+        <tr>
+            <td><strong>{{ track.title }}</strong> <span class="text-secondary"> - {{ track.album.artist.name }}</span></td>
+            <td class="text-end">
+                <a href="{% url 'album_detail' track.album.id %}" class="btn btn-sm btn-outline-secondary">Přejít k albu</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% if not artists and not tracks %}
+<div class="alert alert-secondary mt-4">Nebylo nic nalezeno. Zkuste jiný dotaz.</div>
+{% endif %}
+
+{% endblock %}

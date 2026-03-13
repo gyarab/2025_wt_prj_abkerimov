@@ -1,0 +1,24 @@
+{% extends 'melody/base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="fw-bold">Tvoje knihovna</h1>
+    <button class="btn btn-outline-light">+ Vytvořit playlist</button>
+</div>
+
+<div class="row row-cols-1 row-cols-md-4 g-4">
+    {% for playlist in user_playlists %}
+    <div class="col">
+        <div class="card bg-dark text-light border-secondary h-100 p-3">
+            <div class="bg-success rounded mb-3 d-flex align-items-center justify-content-center shadow" style="aspect-ratio: 1/1;">
+                <h1 class="text-dark opacity-50 m-0">🎵</h1>
+            </div>
+            <a href="{% url 'playlist_detail' playlist.id %}" class="text-light text-decoration-none stretched-link fw-bold h5 mb-1">{{ playlist.name }}</a>
+            <p class="text-secondary small m-0">Vytvořeno: {{ playlist.created_at|date:"d. m. Y" }}</p>
+        </div>
+    </div>
+    {% empty %}
+    <p class="text-secondary">Zatím nemáš žádné playlisty.</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'melody/base.html' %}
+
+{% block content %}
+<h2 class="mb-4">Poslední alba</h2>
+<div class="row row-cols-2 row-cols-md-4 g-4 mb-5">
+    {% for album in recent_albums %}
+    <div class="col">
+        <div class="card bg-dark text-light h-100 border-secondary">
+            {% if album.cover %}
+                <img src="{{ album.cover.url }}" class="card-img-top" alt="{{ album.title }}">
+            {% else %}
+                <div class="card-img-top bg-secondary" style="height: 200px;"></div>
+            {% endif %}
+            <div class="card-body">
+                <h6 class="card-title text-truncate">{{ album.title }}</h6>
+                <p class="card-text text-secondary small">{{ album.artist.name }}</p>
+                <a href="{% url 'album_detail' album.id %}" class="btn btn-outline-success btn-sm w-100">Otevřít</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p class="text-secondary">Zatím zde nejsou žádná alba. Přidejte nějaké v administraci!</p>
+    {% endfor %}
+</div>
+
+<h2 class="mb-4">Populární interpreti</h2>
+<div class="row row-cols-2 row-cols-md-6 g-4">
+    {% for artist in artists %}
+    <div class="col text-center">
+        <div class="rounded-circle bg-secondary mb-2 mx-auto" style="width: 100px; height: 100px; overflow: hidden;">
+            {% if artist.image %}
+                <img src="{{ artist.image.url }}" class="w-100 h-100" style="object-fit: cover;">
+            {% endif %}
+        </div>
+        <a href="{% url 'artist_detail' artist.id %}" class="text-light text-decoration-none h6">{{ artist.name }}</a>
+    </div>
+    {% empty %}
+    <p class="text-secondary">Zatím zde nejsou žádní interpreti.</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'melody/base.html' %}
+
+{% block content %}
+<div class="mb-5 text-center">
+    <div class="rounded-circle bg-secondary mx-auto mb-3 shadow" style="width: 200px; height: 200px; overflow: hidden;">
+        {% if artist.image %}
+            <img src="{{ artist.image.url }}" class="w-100 h-100" style="object-fit: cover;">
+        {% endif %}
+    </div>
+    <h1 class="display-4 fw-bold">{{ artist.name }}</h1>
+    {% if artist.bio %}
+        <p class="text-secondary mx-auto" style="max-width: 600px;">{{ artist.bio }}</p>
+    {% endif %}
+</div>
+
+<h3 class="mb-4">Diskografie</h3>
+<div class="row row-cols-2 row-cols-md-5 g-4">
+    {% for album in artist.albums.all %}
+    <div class="col">
+        <div class="card bg-dark text-light border-secondary h-100">
+            {% if album.cover %}
+                <img src="{{ album.cover.url }}" class="card-img-top" alt="{{ album.title }}">
+            {% else %}
+                <div class="card-img-top bg-secondary" style="aspect-ratio: 1/1;"></div>
+            {% endif %}
+            <div class="card-body p-2">
+                <a href="{% url 'album_detail' album.id %}" class="text-light text-decoration-none stretched-link fw-bold">{{ album.title }}</a>
+                <p class="text-secondary small m-0">{{ album.release_date|date:"Y" }}</p>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p class="text-secondary">Interpret zatím nevydal žádná alba.</p>
+    {% endfor %}
+</div>
+{% endblock %}

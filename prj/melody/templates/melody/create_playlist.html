@@ -1,0 +1,27 @@
+{% extends 'melody/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card bg-dark text-light border-secondary">
+            <div class="card-header border-secondary bg-success text-dark fw-bold">
+                Vytvořit nový playlist
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form.name.label_tag }}
+                        {{ form.name }}
+                    </div>
+                    <div class="mb-4 form-check">
+                        {{ form.is_public }}
+                        {{ form.is_public.label_tag }}
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Uložit playlist</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
