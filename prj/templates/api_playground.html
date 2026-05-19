@@ -4,7 +4,7 @@
 
 {% block content %}
 <h1 class="page-title">API Playground</h1>
-<p class="muted">Tady můžeš testovat asynchronní volání hudebních koncových bodů platformy MelodyStream.</p>
+<p class="muted">Test asynchronní volání apkz MelodyStream.</p>
 
 <div class="api-test" style="margin: 20px 0; padding: 15px; border: 1px solid #ccc; border-radius: 5px;">
     <h2>Test Skladeb (GET /api/track/{id})</h2>
@@ -28,19 +28,18 @@
             return;
         }
 
-        // Voláme náš přepsaný endpoint pro MelodyStream
+     
         fetch(`/api/track/${trackId}`)
             .then(response => {
-                // První .then() zpracuje hlavičku odpovědi. 
-                // Pokud skladba neexistuje (404), chceme i tak vypsat JSON zprávu z Django Ninja
+          
                 return response.json(); 
             })
             .then(data => {
-                // Druhé .then() dostane už hotová zparsovaná data (JS objekt)
+           
                 document.getElementById('trackResponse').textContent = JSON.stringify(data, null, 2);
             })
             .catch(error => {
-                // Pokud selže síť nebo se stane jiná chyba
+              
                 document.getElementById('trackResponse').textContent = 'Chyba sítě/požadavku: ' + error;
             });
 
