@@ -1,0 +1,15 @@
+- model: melodystream.featuredartist
+  pk: 1
+  fields:
+    name: "Nik Tendo"
+    formed_year: 2016
+    country: "Česko"
+    photo_url: "https://example.com/artists/niktendo.jpg"
+
+- model: melodystream.featuredartist
+  pk: 2
+  fields:
+    name: "Ektor"
+    formed_year: 2008
+    country: "Česko"
+    photo_url: "https://example.com/artists/ektor.jpg"
