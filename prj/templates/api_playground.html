@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}MelodyStream - API Playground{% endblock %}
+
+{% block content %}
+<h1 class="page-title">API Playground</h1>
+<p class="muted">Tady můžeš testovat asynchronní volání hudebních koncových bodů platformy MelodyStream.</p>
+
+<div class="api-test" style="margin: 20px 0; padding: 15px; border: 1px solid #ccc; border-radius: 5px;">
+    <h2>Test Skladeb (GET /api/track/{id})</h2>
+    <input type="number" id="trackIdInput" placeholder="Zadejte ID skladby" style="padding: 5px;">
+    <button id="fetchTrackButton" onclick="fetchTrack()" style="padding: 5px 10px;">Načíst skladbu</button>
+    <button id="resetButton" onclick="resetOutput()" style="padding: 5px 10px;">Vyčistit</button>
+    
+    <h3 style="margin-top: 15px;">Odpověď ze serveru:</h3>
+    <pre id="trackResponse" class="response" style="background: #f4f4f4; padding: 10px; border-radius: 4px; min-height: 40px; overflow-x: auto;"></pre>
+</div>
+
+<script>
+    function resetOutput() {
+        document.getElementById('trackResponse').textContent = '';
+    }
+
+    function fetchTrack() {
+        const trackId = document.getElementById('trackIdInput').value;
+        if (!trackId) {
+            document.getElementById('trackResponse').textContent = 'Zadejte prosím platné ID.';
+            return;
+        }
+
+        // Voláme náš přepsaný endpoint pro MelodyStream
+        fetch(`/api/track/${trackId}`)
+            .then(response => {
+                // První .then() zpracuje hlavičku odpovědi. 
+                // Pokud skladba neexistuje (404), chceme i tak vypsat JSON zprávu z Django Ninja
+                return response.json(); 
+            })
+            .then(data => {
+                // Druhé .then() dostane už hotová zparsovaná data (JS objekt)
+                document.getElementById('trackResponse').textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                // Pokud selže síť nebo se stane jiná chyba
+                document.getElementById('trackResponse').textContent = 'Chyba sítě/požadavku: ' + error;
+            });
+
+        console.log("Funkce fetchTrack() byla spuštěna a požadavek odeslán.");
+    }
+    console.log("API Playground načten.");
+</script>
+{% endblock %}
